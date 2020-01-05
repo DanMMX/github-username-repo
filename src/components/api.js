@@ -16,21 +16,16 @@ export const fetchUserRepos = (username, methods) =>
 
       return null
     })
-    .then(response => {
-      if (!response) {
+    .then(repos => {
+      if (!repos) {
         methods.updateCurrentUser(null)
         methods.updateRepos([])
+        methods.updateIsLoading(false)
         return
       }
 
-      if (response.length === 0) {
-        fetchUser(username, methods)
-        methods.updateRepos(response)
-      } else {
-        methods.updateCurrentUser(response[0].owner)
-        methods.updateRepos(response)
-        methods.updateIsLoading(false)
-      }
+      fetchUser(username, methods)
+      methods.updateRepos(repos)
     })
 
 export const fetchUser = (username, methods) =>
