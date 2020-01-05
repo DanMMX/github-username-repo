@@ -13,8 +13,6 @@ import {
 } from 'reactstrap';
 import {fetchUserRepos} from '../api'
 
-import './App.css';
-
 function App() {
   const [username, updateUsername] = useState('')
   const [currentUser, updateCurrentUser] = useState(null)
@@ -32,15 +30,15 @@ function App() {
     <Container>
       <Form onSubmit={onSubmit}>
         <FormGroup row className="pt-5">
-          <Label lg={5} md={12} xs="12" for="username" className="text-right text-center mb-2 mb-lg-0"><b>Ingrese el nombre de un usuario de Github</b></Label>
+          <Label lg={5} md={12} xs="12" for="username" className="text-right text-center mb-2 mb-lg-0"><b>Search a Github user through its username</b></Label>
           <Col lg={4} md={8} xs="12" className="text-center text-md-right">
-            <Input type="text" className="mb-2 mb-lg-0" value={username} onChange={e => updateUsername(e.target.value)} name="username" id="username" placeholder="Escribe un nombre de usuario" />
+            <Input type="text" className="mb-2 mb-lg-0" value={username} onChange={e => updateUsername(e.target.value)} name="username" id="username" placeholder="Enter a username" />
           </Col>
-          <Col lg={3} md={4} xs="12" className="text-right text-center text-md-left mb-2 mb-lg-0"><Button type="submit" color="info">Search user</Button></Col>
+          <Col lg={3} md={4} xs="12" className="text-right text-center text-md-left mb-2 mb-lg-0"><Button type="submit" color="info">Search username</Button></Col>
         </FormGroup>
       </Form>
       <hr />
-      {isLoading && <Row><Col><Spinner color="primary" className="mr-2" />Cargando usuario de Github</Col></Row>}
+      {isLoading && <Row><Col><Spinner color="primary" className="mr-2" />Loading Github user</Col></Row>}
       {!isLoading && error !== '' && <Row><Col><h5>{error}</h5></Col></Row>}
       {currentUser !== null && (
         <Row>
@@ -60,10 +58,10 @@ function App() {
             <hr className="d-lg-none"/>
           </Col>
           <Col lg="8" sm="12">
-            {repos.length === 0 && <h5>Este usuario no tiene ningún repo.</h5>}
+            {repos.length === 0 && <h5>This user doesn't have any repos.</h5>}
             {repos.length !== 0 && (
               <Fragment>
-                <h2>Repos del usuario {currentUser.login}</h2>
+                <h2>Repos from user {currentUser.login}</h2>
                 {repos.map(repo => (
                   <Row className="mb-2">
                     <Col sm="9">

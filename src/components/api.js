@@ -7,11 +7,11 @@ export const fetchUserRepos = (username, methods) =>
       }
 
       if (response.status === 404) {
-        methods.updateError('No se encontró ese nombre de usuario.')
+        methods.updateError('User not found.')
       }
 
       if ([200, 404].indexOf(response.status) < 0) {
-        methods.updateError('Ocurrió algún otro error.')
+        methods.updateError('There\'s something wrong ! D:')
       }
 
       return null
